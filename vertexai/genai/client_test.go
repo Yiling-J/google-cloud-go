@@ -60,6 +60,18 @@ func TestLive(t *testing.T) {
 		checkMatch(t, got, `15.* cm|[1-9].* inches`)
 	})
 
+	t.Run("GenerateContentRaw", func(t *testing.T) {
+		resp, err := model.GenerateContentRaw(ctx, &Content{
+			Parts: []Part{Text("What is the average size of a swallow?")},
+			Role:  roleUser,
+		})
+		if err != nil {
+			t.Fatal(err)
+		}
+		got := responseString(resp)
+		checkMatch(t, got, `15.* cm|[1-9].* inches`)
+	})
+
 	t.Run("streaming", func(t *testing.T) {
 		iter := model.GenerateContentStream(ctx, Text("Are you hungry?"))
 		got := responsesString(t, iter)

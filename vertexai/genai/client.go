@@ -116,6 +116,11 @@ func (m *GenerativeModel) GenerateContent(ctx context.Context, parts ...Part) (*
 	return m.generateContent(ctx, m.newGenerateContentRequest(newUserContent(parts)))
 }
 
+// GenerateContent produces a single request and response with contents.
+func (m *GenerativeModel) GenerateContentRaw(ctx context.Context, contents ...*Content) (*GenerateContentResponse, error) {
+	return m.generateContent(ctx, m.newGenerateContentRequest(contents...))
+}
+
 // GenerateContentStream returns an iterator that enumerates responses.
 func (m *GenerativeModel) GenerateContentStream(ctx context.Context, parts ...Part) *GenerateContentResponseIterator {
 	streamClient, err := m.c.c.StreamGenerateContent(ctx, m.newGenerateContentRequest(newUserContent(parts)))
