@@ -233,7 +233,7 @@ func (c *InstanceGroupManagersClient) AbandonInstances(ctx context.Context, req 
 	return c.internalClient.AbandonInstances(ctx, req, opts...)
 }
 
-// AggregatedList retrieves the list of managed instance groups and groups them by zone.
+// AggregatedList retrieves the list of managed instance groups and groups them by zone. To prevent failure, Google recommends that you set the returnPartialSuccess parameter to true.
 func (c *InstanceGroupManagersClient) AggregatedList(ctx context.Context, req *computepb.AggregatedListInstanceGroupManagersRequest, opts ...gax.CallOption) *InstanceGroupManagersScopedListPairIterator {
 	return c.internalClient.AggregatedList(ctx, req, opts...)
 }
@@ -394,7 +394,9 @@ func defaultInstanceGroupManagersRESTClientOptions() []option.ClientOption {
 func (c *instanceGroupManagersRESTClient) setGoogleClientInfo(keyval ...string) {
 	kv := append([]string{"gl-go", gax.GoVersion}, keyval...)
 	kv = append(kv, "gapic", getVersionClient(), "gax", gax.Version, "rest", "UNKNOWN")
-	c.xGoogHeaders = []string{"x-goog-api-client", gax.XGoogHeader(kv...)}
+	c.xGoogHeaders = []string{
+		"x-goog-api-client", gax.XGoogHeader(kv...),
+	}
 }
 
 // Close closes the connection to the API service. The user should invoke this when
@@ -492,7 +494,7 @@ func (c *instanceGroupManagersRESTClient) AbandonInstances(ctx context.Context, 
 	return op, nil
 }
 
-// AggregatedList retrieves the list of managed instance groups and groups them by zone.
+// AggregatedList retrieves the list of managed instance groups and groups them by zone. To prevent failure, Google recommends that you set the returnPartialSuccess parameter to true.
 func (c *instanceGroupManagersRESTClient) AggregatedList(ctx context.Context, req *computepb.AggregatedListInstanceGroupManagersRequest, opts ...gax.CallOption) *InstanceGroupManagersScopedListPairIterator {
 	it := &InstanceGroupManagersScopedListPairIterator{}
 	req = proto.Clone(req).(*computepb.AggregatedListInstanceGroupManagersRequest)

@@ -163,7 +163,7 @@ func (c *SslPoliciesClient) Connection() *grpc.ClientConn {
 	return c.internalClient.Connection()
 }
 
-// AggregatedList retrieves the list of all SslPolicy resources, regional and global, available to the specified project.
+// AggregatedList retrieves the list of all SslPolicy resources, regional and global, available to the specified project. To prevent failure, Google recommends that you set the returnPartialSuccess parameter to true.
 func (c *SslPoliciesClient) AggregatedList(ctx context.Context, req *computepb.AggregatedListSslPoliciesRequest, opts ...gax.CallOption) *SslPoliciesScopedListPairIterator {
 	return c.internalClient.AggregatedList(ctx, req, opts...)
 }
@@ -264,7 +264,9 @@ func defaultSslPoliciesRESTClientOptions() []option.ClientOption {
 func (c *sslPoliciesRESTClient) setGoogleClientInfo(keyval ...string) {
 	kv := append([]string{"gl-go", gax.GoVersion}, keyval...)
 	kv = append(kv, "gapic", getVersionClient(), "gax", gax.Version, "rest", "UNKNOWN")
-	c.xGoogHeaders = []string{"x-goog-api-client", gax.XGoogHeader(kv...)}
+	c.xGoogHeaders = []string{
+		"x-goog-api-client", gax.XGoogHeader(kv...),
+	}
 }
 
 // Close closes the connection to the API service. The user should invoke this when
@@ -285,7 +287,7 @@ func (c *sslPoliciesRESTClient) Connection() *grpc.ClientConn {
 	return nil
 }
 
-// AggregatedList retrieves the list of all SslPolicy resources, regional and global, available to the specified project.
+// AggregatedList retrieves the list of all SslPolicy resources, regional and global, available to the specified project. To prevent failure, Google recommends that you set the returnPartialSuccess parameter to true.
 func (c *sslPoliciesRESTClient) AggregatedList(ctx context.Context, req *computepb.AggregatedListSslPoliciesRequest, opts ...gax.CallOption) *SslPoliciesScopedListPairIterator {
 	it := &SslPoliciesScopedListPairIterator{}
 	req = proto.Clone(req).(*computepb.AggregatedListSslPoliciesRequest)

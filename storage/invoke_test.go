@@ -25,7 +25,9 @@ import (
 	"regexp"
 	"strings"
 	"testing"
+	"time"
 
+	"github.com/googleapis/gax-go/v2"
 	"github.com/googleapis/gax-go/v2/callctx"
 	"golang.org/x/xerrors"
 	"google.golang.org/api/googleapi"
@@ -250,10 +252,15 @@ func TestInvoke(t *testing.T) {
 				}
 				return test.finalErr
 			}
+			// Use a short backoff to speed up the test.
+			if test.retry == nil {
+				test.retry = defaultRetry.clone()
+			}
+			test.retry.backoff = &gax.Backoff{Initial: time.Millisecond}
 			got := run(ctx, call, test.retry, test.isIdempotentValue)
-			if test.expectFinalErr && got != test.finalErr {
+			if test.expectFinalErr && !errors.Is(got, test.finalErr) {
 				s.Errorf("got %v, want %v", got, test.finalErr)
-			} else if !test.expectFinalErr && got != test.initialErr {
+			} else if !test.expectFinalErr && !errors.Is(got, test.initialErr) {
 				s.Errorf("got %v, want %v", got, test.initialErr)
 			}
 			wantAttempts := 1 + test.count
@@ -340,6 +347,11 @@ func TestShouldRetry(t *testing.T) {
 			shouldRetry: true,
 		},
 		{
+			desc:        "net.OpError{Err: errors.New(\"connection reset by peer\")}",
+			inputErr:    &net.OpError{Op: "blah", Net: "tcp", Err: errors.New("connection reset by peer")},
+			shouldRetry: true,
+		},
+		{
 			desc:        "io.ErrUnexpectedEOF",
 			inputErr:    io.ErrUnexpectedEOF,
 			shouldRetry: true,
@@ -375,9 +387,8 @@ func TestShouldRetry(t *testing.T) {
 			shouldRetry: false,
 		},
 		{
-			desc: "wrapped ErrClosed text",
-			// TODO: check directly against wrapped net.ErrClosed (go 1.16+)
-			inputErr:    &net.OpError{Op: "write", Err: errors.New("use of closed network connection")},
+			desc:        "wrapped net.ErrClosed",
+			inputErr:    &net.OpError{Err: net.ErrClosed},
 			shouldRetry: true,
 		},
 	} {

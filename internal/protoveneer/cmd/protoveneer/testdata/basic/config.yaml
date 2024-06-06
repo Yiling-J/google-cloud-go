@@ -37,9 +37,24 @@ types:
           type: float32
         CandidateCount:
           type: int32
+        TopK:
+          type: '*int32'
+          convertToFrom: int32pToFloat32p, float32pToInt32p
 
     Citation:
       docVerb: contains
       fields:
         Uri:
           name: URI
+
+    Pop:
+      fields:
+        Y:
+          noConvert: true
+      populateToFrom: popYTo, popYFrom
+
+    File:
+      fields:
+        hidden:
+          add: true
+          type: '*Client'

@@ -1,5 +1,78 @@
 # Changes
 
+## [1.63.0](https://github.com/googleapis/google-cloud-go/compare/spanner/v1.62.0...spanner/v1.63.0) (2024-05-24)
+
+
+### Features
+
+* **spanner:** Fix schema naming ([#10194](https://github.com/googleapis/google-cloud-go/issues/10194)) ([215e0c8](https://github.com/googleapis/google-cloud-go/commit/215e0c8125ea05246c834984bde1ca698c7dde4c))
+* **spanner:** Update go mod to use latest grpc lib ([#10218](https://github.com/googleapis/google-cloud-go/issues/10218)) ([adf91f9](https://github.com/googleapis/google-cloud-go/commit/adf91f9fd37faa39ec7c6f9200273220f65d2a82))
+
+## [1.62.0](https://github.com/googleapis/google-cloud-go/compare/spanner/v1.61.0...spanner/v1.62.0) (2024-05-15)
+
+
+### Features
+
+* **spanner/admin/database:** Add support for multi region encryption config ([3e25053](https://github.com/googleapis/google-cloud-go/commit/3e250530567ee81ed4f51a3856c5940dbec35289))
+* **spanner/executor:** Add QueryCancellationAction message in executor protos ([292e812](https://github.com/googleapis/google-cloud-go/commit/292e81231b957ae7ac243b47b8926564cee35920))
+* **spanner:** Add `RESOURCE_EXHAUSTED` to the list of retryable error codes ([1d757c6](https://github.com/googleapis/google-cloud-go/commit/1d757c66478963d6cbbef13fee939632c742759c))
+* **spanner:** Add support for Proto Columns ([#9315](https://github.com/googleapis/google-cloud-go/issues/9315)) ([3ffbbbe](https://github.com/googleapis/google-cloud-go/commit/3ffbbbe50225684f4211c6dbe3ca25acb3d02b8e))
+
+
+### Bug Fixes
+
+* **spanner:** Add ARRAY keywords to keywords ([#10079](https://github.com/googleapis/google-cloud-go/issues/10079)) ([8e675cd](https://github.com/googleapis/google-cloud-go/commit/8e675cd0ccf12c6912209aa5c56092db3716c40d))
+* **spanner:** Handle unused errors ([#10067](https://github.com/googleapis/google-cloud-go/issues/10067)) ([a0c097c](https://github.com/googleapis/google-cloud-go/commit/a0c097c724b609cfa428e69f89075f02a3782a7b))
+* **spanner:** Remove json-iterator dependency ([#10099](https://github.com/googleapis/google-cloud-go/issues/10099)) ([3917cca](https://github.com/googleapis/google-cloud-go/commit/3917ccac57c403b3b4d07514ac10a66a86e298c0)), refs [#9380](https://github.com/googleapis/google-cloud-go/issues/9380)
+* **spanner:** Update staleness bound ([#10118](https://github.com/googleapis/google-cloud-go/issues/10118)) ([c07f1e4](https://github.com/googleapis/google-cloud-go/commit/c07f1e47c06387b696abb1edbfa339b391ec1fd5))
+
+## [1.61.0](https://github.com/googleapis/google-cloud-go/compare/spanner/v1.60.0...spanner/v1.61.0) (2024-04-30)
+
+
+### Features
+
+* **spanner/admin/instance:** Adding `EXPECTED_FULFILLMENT_PERIOD` to the indicate instance creation times (with `FULFILLMENT_PERIOD_NORMAL` or `FULFILLMENT_PERIOD_EXTENDED` ENUM) with the extended instance creation time triggered by On-Demand Capacity... ([#9693](https://github.com/googleapis/google-cloud-go/issues/9693)) ([aa93790](https://github.com/googleapis/google-cloud-go/commit/aa93790132ba830b4c97d217ef02764e2fb1b8ea))
+* **spanner/executor:** Add SessionPoolOptions, SpannerOptions protos in executor protos ([2cdc40a](https://github.com/googleapis/google-cloud-go/commit/2cdc40a0b4288f5ab5f2b2b8f5c1d6453a9c81ec))
+* **spanner:** Add support for change streams transaction exclusion option ([#9779](https://github.com/googleapis/google-cloud-go/issues/9779)) ([979ce94](https://github.com/googleapis/google-cloud-go/commit/979ce94758442b1224a78a4f3b1f5d592ab51660))
+* **spanner:** Support MultiEndpoint ([#9565](https://github.com/googleapis/google-cloud-go/issues/9565)) ([0ac0d26](https://github.com/googleapis/google-cloud-go/commit/0ac0d265abedf946b05294ef874a892b2c5d6067))
+
+
+### Bug Fixes
+
+* **spanner/test/opentelemetry/test:** Bump x/net to v0.24.0 ([ba31ed5](https://github.com/googleapis/google-cloud-go/commit/ba31ed5fda2c9664f2e1cf972469295e63deb5b4))
+* **spanner:** Bump x/net to v0.24.0 ([ba31ed5](https://github.com/googleapis/google-cloud-go/commit/ba31ed5fda2c9664f2e1cf972469295e63deb5b4))
+* **spanner:** Fix uint8 conversion ([9221c7f](https://github.com/googleapis/google-cloud-go/commit/9221c7fa12cef9d5fb7ddc92f41f1d6204971c7b))
+
+## [1.60.0](https://github.com/googleapis/google-cloud-go/compare/spanner/v1.59.0...spanner/v1.60.0) (2024-03-19)
+
+
+### Features
+
+* **spanner:** Allow attempt direct path xds via env var ([e4b663c](https://github.com/googleapis/google-cloud-go/commit/e4b663cdcb6e010c5a8ac791e5624407aaa191b3))
+
+## [1.59.0](https://github.com/googleapis/google-cloud-go/compare/spanner/v1.58.0...spanner/v1.59.0) (2024-03-13)
+
+
+### Features
+
+* **spanner/spansql:** Support Table rename & Table synonym ([#9275](https://github.com/googleapis/google-cloud-go/issues/9275)) ([9b97ce7](https://github.com/googleapis/google-cloud-go/commit/9b97ce75d36980fdaa06f15b0398b7b65e0d6082))
+* **spanner:** Add support of float32 type ([#9525](https://github.com/googleapis/google-cloud-go/issues/9525)) ([87d7ea9](https://github.com/googleapis/google-cloud-go/commit/87d7ea97787a56b18506b53e9b26d037f92759ca))
+
+
+### Bug Fixes
+
+* **spanner:** Add JSON_PARSE_ARRAY to funcNames slice ([#9557](https://github.com/googleapis/google-cloud-go/issues/9557)) ([f799597](https://github.com/googleapis/google-cloud-go/commit/f79959722352ead48bfb3efb3001fddd3a56db65))
+
+## [1.58.0](https://github.com/googleapis/google-cloud-go/compare/spanner/v1.57.0...spanner/v1.58.0) (2024-03-06)
+
+
+### Features
+
+* **spanner/admin/instance:** Add instance partition support to spanner instance proto ([ae1f547](https://github.com/googleapis/google-cloud-go/commit/ae1f5472bff1b476c3fd58e590ec135185446daf))
+* **spanner:** Add field for multiplexed session in spanner.proto ([a86aa8e](https://github.com/googleapis/google-cloud-go/commit/a86aa8e962b77d152ee6cdd433ad94967150ef21))
+* **spanner:** SelectAll struct spanner tag annotation match should be case-insensitive ([#9460](https://github.com/googleapis/google-cloud-go/issues/9460)) ([6cd6a73](https://github.com/googleapis/google-cloud-go/commit/6cd6a73be87a261729d3b6b45f3d28be93c3fdb3))
+* **spanner:** Update TransactionOptions to include new option exclude_txn_from_change_streams ([0195fe9](https://github.com/googleapis/google-cloud-go/commit/0195fe9292274ff9d86c71079a8e96ed2e5f9331))
+
 ## [1.57.0](https://github.com/googleapis/google-cloud-go/compare/spanner/v1.56.0...spanner/v1.57.0) (2024-02-13)
 
 

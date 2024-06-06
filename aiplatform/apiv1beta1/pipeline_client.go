@@ -504,7 +504,9 @@ func (c *pipelineGRPCClient) Connection() *grpc.ClientConn {
 func (c *pipelineGRPCClient) setGoogleClientInfo(keyval ...string) {
 	kv := append([]string{"gl-go", gax.GoVersion}, keyval...)
 	kv = append(kv, "gapic", getVersionClient(), "gax", gax.Version, "grpc", grpc.Version)
-	c.xGoogHeaders = []string{"x-goog-api-client", gax.XGoogHeader(kv...)}
+	c.xGoogHeaders = []string{
+		"x-goog-api-client", gax.XGoogHeader(kv...),
+	}
 }
 
 // Close closes the connection to the API service. The user should invoke this when
@@ -583,7 +585,9 @@ func defaultPipelineRESTClientOptions() []option.ClientOption {
 func (c *pipelineRESTClient) setGoogleClientInfo(keyval ...string) {
 	kv := append([]string{"gl-go", gax.GoVersion}, keyval...)
 	kv = append(kv, "gapic", getVersionClient(), "gax", gax.Version, "rest", "UNKNOWN")
-	c.xGoogHeaders = []string{"x-goog-api-client", gax.XGoogHeader(kv...)}
+	c.xGoogHeaders = []string{
+		"x-goog-api-client", gax.XGoogHeader(kv...),
+	}
 }
 
 // Close closes the connection to the API service. The user should invoke this when
@@ -1449,9 +1453,6 @@ func (c *pipelineRESTClient) CreatePipelineJob(ctx context.Context, req *aiplatf
 	params := url.Values{}
 	if req.GetPipelineJobId() != "" {
 		params.Add("pipelineJobId", fmt.Sprintf("%v", req.GetPipelineJobId()))
-	}
-	if req.GetPreflightValidations() {
-		params.Add("preflightValidations", fmt.Sprintf("%v", req.GetPreflightValidations()))
 	}
 
 	baseUrl.RawQuery = params.Encode()

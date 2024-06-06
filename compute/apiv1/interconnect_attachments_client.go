@@ -154,7 +154,7 @@ func (c *InterconnectAttachmentsClient) Connection() *grpc.ClientConn {
 	return c.internalClient.Connection()
 }
 
-// AggregatedList retrieves an aggregated list of interconnect attachments.
+// AggregatedList retrieves an aggregated list of interconnect attachments. To prevent failure, Google recommends that you set the returnPartialSuccess parameter to true.
 func (c *InterconnectAttachmentsClient) AggregatedList(ctx context.Context, req *computepb.AggregatedListInterconnectAttachmentsRequest, opts ...gax.CallOption) *InterconnectAttachmentsScopedListPairIterator {
 	return c.internalClient.AggregatedList(ctx, req, opts...)
 }
@@ -255,7 +255,9 @@ func defaultInterconnectAttachmentsRESTClientOptions() []option.ClientOption {
 func (c *interconnectAttachmentsRESTClient) setGoogleClientInfo(keyval ...string) {
 	kv := append([]string{"gl-go", gax.GoVersion}, keyval...)
 	kv = append(kv, "gapic", getVersionClient(), "gax", gax.Version, "rest", "UNKNOWN")
-	c.xGoogHeaders = []string{"x-goog-api-client", gax.XGoogHeader(kv...)}
+	c.xGoogHeaders = []string{
+		"x-goog-api-client", gax.XGoogHeader(kv...),
+	}
 }
 
 // Close closes the connection to the API service. The user should invoke this when
@@ -276,7 +278,7 @@ func (c *interconnectAttachmentsRESTClient) Connection() *grpc.ClientConn {
 	return nil
 }
 
-// AggregatedList retrieves an aggregated list of interconnect attachments.
+// AggregatedList retrieves an aggregated list of interconnect attachments. To prevent failure, Google recommends that you set the returnPartialSuccess parameter to true.
 func (c *interconnectAttachmentsRESTClient) AggregatedList(ctx context.Context, req *computepb.AggregatedListInterconnectAttachmentsRequest, opts ...gax.CallOption) *InterconnectAttachmentsScopedListPairIterator {
 	it := &InterconnectAttachmentsScopedListPairIterator{}
 	req = proto.Clone(req).(*computepb.AggregatedListInterconnectAttachmentsRequest)
