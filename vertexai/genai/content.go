@@ -135,6 +135,9 @@ func (c *GenerationConfig) SetTopP(x float32) { c.TopP = &x }
 // SetTopK sets the TopK field.
 func (c *GenerationConfig) SetTopK(x int32) { c.TopK = &x }
 
+// SetResponseMIMEType sets the ResponseMIMEType field.
+func (c *GenerationConfig) SetResponseMIMEType(x string) { c.ResponseMIMEType = x }
+
 // FunctionCalls return all the FunctionCall parts in the candidate.
 func (c *Candidate) FunctionCalls() []FunctionCall {
 	if c.Content == nil {
